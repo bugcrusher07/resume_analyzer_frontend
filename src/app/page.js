@@ -242,7 +242,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-lg sm:text-xl font-semibold mb-2">Professional Tips</h3>
-              <p className="text-sm sm:text-base text-gray-600">Get expert recommendations to improve your resume's impact.</p>
+              <p className="text-sm sm:text-base text-gray-600">Get expert recommendations to improve your resume&apos;s impact.</p>
             </div>
           </div>
         </div>
