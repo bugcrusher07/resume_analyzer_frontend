@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+// API endpoint configuration
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://resume-analyzer-backend-3il7.onrender.com';
+
 export default function Home() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -34,7 +37,7 @@ export default function Home() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8000/analyze-resume', {
+      const response = await fetch(`${API_BASE_URL}/analyze-resume`, {
         method: 'POST',
         body: formData,
       });
