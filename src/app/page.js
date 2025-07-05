@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-// API endpoint configuration
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://resume-analyzer-backend-3il7.onrender.com';
 
 export default function Home() {
@@ -12,6 +11,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [analysis, setAnalysis] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -32,6 +32,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
     setAnalysis(null);
+    setShowAlert(true);
 
     const formData = new FormData();
     formData.append('file', file);
@@ -52,6 +53,7 @@ export default function Home() {
       setError(err.message);
     } finally {
       setLoading(false);
+      setShowAlert(false);
     }
   };
 
@@ -66,7 +68,21 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
+
+      {showAlert && (
+        <div className="fixed top-0 left-0 right-0 z-50 bg-red-600 text-white px-4 py-3 shadow-lg transform transition-all duration-300 ease-out">
+          <div className="container mx-auto flex items-center justify-center">
+            <div className="flex items-center space-x-3">
+              <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+              <span className="text-sm sm:text-base font-medium text-center">
+                Please wait... The backend server is starting up. This may take up to 2 minutes on first request.
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className={`container mx-auto px-4 sm:px-6 py-8 sm:py-16 ${showAlert ? 'pt-16 sm:pt-20' : ''}`}>
         <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8">
           <div className="relative w-20 h-20 sm:w-24 sm:h-24 mb-4 sm:mb-8">
             <Image
