@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://resume-analyzer-backend-3il7.onrender.com';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://resume-analyzer-backend-ujjl.onrender.com';
 
 export default function Home() {
   const [file, setFile] = useState(null);
